@@ -86,7 +86,6 @@ class CartTest extends \PHPUnit_Framework_TestCase
         $i = 0;
         foreach ($cart as $key => $item) {
             $this->assertEquals($i, $key);
-
             $i++;
         }
         $this->assertEquals(3, $i);
