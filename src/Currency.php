@@ -16,7 +16,7 @@ class Currency
      *
      * @var array ISO4217_CODES
      */
-    const ISO4217_CODES = [
+    public static $iso4217Codes = [
         'AED', 'AFN', 'ALL', 'AMD', 'ANG', 'AOA', 'ARS', 'AUD', 'AWG', 'AZN', 'BAM', 'BBD', 'BDT', 'BGN', 'BHD', 'BIF',
         'BMD', 'BND', 'BOB', 'BRL', 'BSD', 'BTN', 'BWP', 'BYR', 'BZD', 'CAD', 'CDF', 'CHF', 'CLP', 'CNY', 'COP', 'CRC',
         'CUC', 'CUP', 'CVE', 'CZK', 'DJF', 'DKK', 'DOP', 'DZD', 'EGP', 'ERN', 'ETB', 'EUR', 'FJD', 'FKP', 'GBP', 'GEL',
@@ -62,6 +62,6 @@ class Currency
      */
     private function isValid($code)
     {
-        return in_array($code, self::ISO4217_CODES);
+        return in_array($code, self::$iso4217Codes);
     }
 }
