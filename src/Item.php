@@ -32,9 +32,9 @@ class Item
      */
     public function __construct($sku, $name, $price)
     {
-        $this->sku = $sku;
-        $this->name = $name;
-        $this->price = $price;
+        $this->sku = (string)$sku;
+        $this->name = (string)$name;
+        $this->price = (string)$price;
     }
 
     /**
