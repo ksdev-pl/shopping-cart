@@ -41,14 +41,6 @@ class Currency
     }
 
     /**
-     * @return string
-     */
-    public function getCode()
-    {
-        return $this->code;
-    }
-
-    /**
      * @param string $code
      *
      * @throws \Exception When the code is invalid
@@ -59,7 +51,15 @@ class Currency
         if (in_array($code, self::$iso4217Codes)) {
             $this->code = $code;
         } else {
-            throw new \Exception('Invalid currency code.');
+            throw new \Exception('Invalid currency code');
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }

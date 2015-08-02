@@ -30,7 +30,7 @@ class CartTest extends \PHPUnit_Framework_TestCase
         foreach ($cart as $item) {
             $this->assertEquals("TestClass_$i", $item['item']->getSku());
             $this->assertEquals("Test Item $i", $item['item']->getName());
-            $this->assertEquals("123$i", $item['item']->getPrice());
+            $this->assertEquals("123.4$i", $item['item']->getPrice());
             $i++;
         }
     }
@@ -61,7 +61,7 @@ class CartTest extends \PHPUnit_Framework_TestCase
         $cart = $this->addTestItems($cart, 4);
         $this->assertEquals(1, $cart->getItem('TestClass_1')['qty']);
 
-        $cart->addItem(new Item("TestClass_1", "Test Item 1", "1231"));
+        $cart->addItem(new Item("TestClass_1", "Test Item 1", "123.41"));
         $this->assertEquals(2, $cart->getItem('TestClass_1')['qty']);
     }
 
@@ -108,7 +108,7 @@ class CartTest extends \PHPUnit_Framework_TestCase
         $first = count($cart) + 1;
         for ($i = 1, $id = $first; $i <= $num; $i++, $id++) {
             $id = $unique ? $id : 0;
-            $cart->addItem(new Item("TestClass_$id", "Test Item $id", "123$id"));
+            $cart->addItem(new Item("TestClass_$id", "Test Item $id", "123.4$id"));
         }
         return $cart;
     }
