@@ -129,6 +129,21 @@ class Cart implements Iterator, Countable
     }
 
     /**
+     * Get the total price of all the cart items
+     *
+     * @return string
+     */
+    public function total()
+    {
+        $sum = '0.00';
+        foreach ($this->items as $item) {
+            $price = bcmul($item['item']->getPrice(), (string)$item['qty'], 2);
+            $sum = bcadd($sum, $price, 2);
+        }
+        return $sum;
+    }
+
+    /**
      * Get the cart items currency
      *
      * @return Currency

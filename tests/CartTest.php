@@ -97,6 +97,19 @@ class CartTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('PLN', $cart->getCurrency()->getCode());
     }
 
+    public function testTotal()
+    {
+        $cart = $this->initTestCart();
+        $cart = $this->addTestItems($cart, 4);
+        $this->assertEquals('493.70', $cart->total());
+
+        $cart->updateItem($cart->getItem('TestClass_1')['item'], 3);
+        $this->assertEquals('740.52', $cart->total());
+
+        $cart->updateItem($cart->getItem('TestClass_2')['item'], 123);
+        $this->assertEquals('15797.76', $cart->total());
+    }
+
     private function initTestCart()
     {
         $cart = new Cart(new Currency('PLN'));
