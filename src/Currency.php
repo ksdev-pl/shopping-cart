@@ -33,16 +33,11 @@ class Currency
     /**
      * @param string $code Currency code in ISO 4217 format
      *
-     * @throws \Exception
+     * @throws \Exception When the code is invalid
      */
     public function __construct($code)
     {
-        $code = strtoupper((string)$code);
-        if ($this->isValid($code)) {
-            $this->code = $code;
-        } else {
-            throw new \Exception('Invalid currency code.');
-        }
+        $this->setCode($code);
     }
 
     /**
@@ -54,14 +49,17 @@ class Currency
     }
 
     /**
-     * Validate currency code
+     * @param string $code
      *
-     * @param string $code Currency code
-     *
-     * @return bool
+     * @throws \Exception When the code is invalid
      */
-    private function isValid($code)
+    public function setCode($code)
     {
-        return in_array($code, self::$iso4217Codes);
+        $code = strtoupper((string)$code);
+        if (in_array($code, self::$iso4217Codes)) {
+            $this->code = $code;
+        } else {
+            throw new \Exception('Invalid currency code.');
+        }
     }
 }

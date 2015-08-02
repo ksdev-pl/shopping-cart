@@ -19,7 +19,7 @@ class CurrencyTest extends \PHPUnit_Framework_TestCase
      * @expectedException \Exception
      * @expectedExceptionMessage Invalid currency code.
      */
-    public function testInvalidCurrency()
+    public function testInvalidCode()
     {
         new Currency('123');
     }
