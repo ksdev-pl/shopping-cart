@@ -69,21 +69,17 @@ $cart->deleteItem($item1);                      // Removes the item from the car
 var_dump($cart->count());                       // int(1)
 var_dump($cart->countUnique());                 // int(1)
 
-var_dump($cart->getItem('SKU3'));               /*
-                                                    array(2) {
-                                                        'item' =>
-                                                        class Ksdev\ShoppingCart\Item#270 (3) {
-                                                            protected $sku =>
-                                                            string(4) "SKU3"
-                                                            protected $name =>
-                                                            string(6) "Item 3"
-                                                            protected $price =>
-                                                            string(6) "300.00"
-                                                        }
-                                                        'qty' =>
-                                                        int(1)
-                                                    }
-                                                */
+var_dump($cart->getItem('SKU3'));               // Get item by Stock Keeping Unit 
+/*
+    array(2) {
+        'item' => class Ksdev\ShoppingCart\Item#270 (3) {
+            protected $sku   => string(4) "SKU3"
+            protected $name  => string(6) "Item 3"
+            protected $price => string(6) "300.00"
+        }
+        'qty' => int(1)
+    }
+*/
 ```
 
 ## Testing
