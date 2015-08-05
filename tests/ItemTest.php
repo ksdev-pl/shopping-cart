@@ -22,19 +22,19 @@ class ItemTest extends \PHPUnit_Framework_TestCase
         try {
             new Item('SKU', 'Name', 123);
         } catch (\Exception $e) {
-            $this->assertEquals('Invalid format of price', $e->getMessage());
+            $this->assertEquals('Invalid amount format', $e->getMessage());
             $numExceptions++;
         }
         try {
             new Item('SKU', 'Name', '123,45');
         } catch (\Exception $e) {
-            $this->assertEquals('Invalid format of price', $e->getMessage());
+            $this->assertEquals('Invalid amount format', $e->getMessage());
             $numExceptions++;
         }
         try {
             new Item('SKU', 'Name', '123.4567');
         } catch (\Exception $e) {
-            $this->assertEquals('Invalid format of price', $e->getMessage());
+            $this->assertEquals('Invalid amount format', $e->getMessage());
             $numExceptions++;
         }
         $this->assertEquals(3, $numExceptions);
@@ -46,19 +46,19 @@ class ItemTest extends \PHPUnit_Framework_TestCase
         try {
             new Item('SKU', 'Name', '123.45', 123);
         } catch (\Exception $e) {
-            $this->assertEquals('Invalid format of tax', $e->getMessage());
+            $this->assertEquals('Invalid amount format', $e->getMessage());
             $numExceptions++;
         }
         try {
             new Item('SKU', 'Name', '123.45', '123,45');
         } catch (\Exception $e) {
-            $this->assertEquals('Invalid format of tax', $e->getMessage());
+            $this->assertEquals('Invalid amount format', $e->getMessage());
             $numExceptions++;
         }
         try {
             new Item('SKU', 'Name', '123.45', '123.4567');
         } catch (\Exception $e) {
-            $this->assertEquals('Invalid format of tax', $e->getMessage());
+            $this->assertEquals('Invalid amount format', $e->getMessage());
             $numExceptions++;
         }
         $this->assertEquals(3, $numExceptions);

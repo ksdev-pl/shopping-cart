@@ -73,12 +73,8 @@ class Item
      */
     public function setPrice($price)
     {
-        $price = (string)$price;
-        if (preg_match('/^\d+\.\d{2}$/', $price)) {
-            $this->price = $price;
-        } else {
-            throw new \Exception('Invalid format of price');
-        }
+        $this->validateAmountFormat($price);
+        $this->price = (string)$price;
     }
 
     /**
@@ -88,12 +84,8 @@ class Item
      */
     public function setTax($tax)
     {
-        $tax = (string)$tax;
-        if (preg_match('/^\d+\.\d{2}$/', $tax)) {
-            $this->tax = $tax;
-        } else {
-            throw new \Exception('Invalid format of tax');
-        }
+        $this->validateAmountFormat($tax);
+        $this->tax = (string)$tax;
     }
 
     // Getters
@@ -128,5 +120,21 @@ class Item
     public function getTax()
     {
         return $this->tax;
+    }
+
+    /**
+     * Validate amount format
+     *
+     * Checks if amount is a number with two digits after decimal point
+     *
+     * @param mixed $amount
+     *
+     * @throws \Exception When the amount format is invalid
+     */
+    protected function validateAmountFormat($amount)
+    {
+        if (! preg_match('/^\d+\.\d{2}$/', $amount)) {
+            throw new \Exception('Invalid amount format');
+        }
     }
 }
