@@ -26,17 +26,26 @@ class Item
     protected $price;
 
     /**
+     * Item tax
+     *
+     * @var string $price
+     */
+    protected $tax;
+
+    /**
      * @param string $sku Item Stock Keeping Unit
      * @param string $name Item name
      * @param string $price Item price with two digits after decimal point, e.g. '123.00'
+     * @param string $tax Optional tax with two digits after decimal point, e.g. '23.00'
      *
      * @throws \Exception When the price format is invalid
      */
-    public function __construct($sku, $name, $price)
+    public function __construct($sku, $name, $price, $tax = '0.00')
     {
         $this->setSku($sku);
         $this->setName($name);
         $this->setPrice($price);
+        $this->setTax($tax);
     }
 
     // Setters
@@ -72,6 +81,21 @@ class Item
         }
     }
 
+    /**
+     * @param string $tax Optional tax with two digits after decimal point, e.g. '23.00'
+     *
+     * @throws \Exception When the tax format is invalid
+     */
+    public function setTax($tax)
+    {
+        $tax = (string)$tax;
+        if (preg_match('/^\d+\.\d{2}$/', $tax)) {
+            $this->tax = $tax;
+        } else {
+            throw new \Exception('Invalid format of tax');
+        }
+    }
+
     // Getters
 
     /**
@@ -96,5 +120,13 @@ class Item
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTax()
+    {
+        return $this->tax;
     }
 }
