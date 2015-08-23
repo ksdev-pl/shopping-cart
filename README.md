@@ -6,7 +6,7 @@
 [![Coverage Status][ico-scrutinizer]][link-scrutinizer]
 [![Quality Score][ico-code-quality]][link-code-quality]
 
-Original source: http://www.peachpit.com/articles/article.aspx?p=1962481 by Larry Ullman. See the article for 
+Original source: http://www.peachpit.com/articles/article.aspx?p=1962481 by Larry Ullman. See the article for
 description and compare source code for changes.
 
 ## Install
@@ -26,9 +26,11 @@ use Ksdev\ShoppingCart\Item;
 
 $cart = new Cart(new Currency('PLN'));
 
-$item1 = new Item('SKU1', 'Item 1', '100.00');
-$item2 = new Item('SKU2', 'Item 2', '200.00');
-$item3 = new Item('SKU3', 'Item 3', '300.00');
+$tax = '23.00';                                 // Tax is optional
+
+$item1 = new Item('SKU1', 'Item 1', '100.00', $tax);
+$item2 = new Item('SKU2', 'Item 2', '200.00', $tax);
+$item3 = new Item('SKU3', 'Item 3', '300.00', $tax);
 
 $cart->addItem($item1);
 $cart->addItem($item2);
@@ -40,6 +42,7 @@ if (!$cart->isEmpty()) {
         var_dump($item->getSku());              // E.g. string(4) "SKU1"
         var_dump($item->getName());             // E.g. string(6) "Item 1"
         var_dump($item->getPrice());            // E.g. string(6) "100.00"
+        var_dump($item->getTax());              // E.g. string(5) "23.00"
         var_dump($arr['qty']);                  // E.g. int(1)
     }
 }
@@ -47,7 +50,7 @@ if (!$cart->isEmpty()) {
 var_dump($cart->total());                       // string(6) "600.00"
 var_dump($cart->getCurrency()->getCode());      // string(3) "PLN"
 
-$item4 = new Item('SKU1', 'Item 1', '100.00');  // Same as $item1
+$item4 = new Item('SKU1', 'Item 1', '100.00', $tax);  // Same as $item1
 $cart->addItem($item4);
 
 var_dump($cart->total());                       // string(6) "700.00"
@@ -69,13 +72,14 @@ $cart->deleteItem($item1);                      // Removes the item from the car
 var_dump($cart->count());                       // int(1)
 var_dump($cart->countUnique());                 // int(1)
 
-var_dump($cart->getItem('SKU3'));               // Get item by Stock Keeping Unit 
+var_dump($cart->getItem('SKU3'));               // Get item by Stock Keeping Unit
 /*
     array(2) {
         'item' => class Ksdev\ShoppingCart\Item#270 (3) {
             protected $sku   => string(4) "SKU3"
             protected $name  => string(6) "Item 3"
             protected $price => string(6) "300.00"
+            protected $tax   => string(5) "23.00"
         }
         'qty' => int(1)
     }
